@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import './styles/global.css';
 import Login from './components/Login';
 import ClientHeader from './components/ClientHeader';
+import Sidebar from './components/Sidebar';
 import Dashboard from './pages/Dashboard';
 import Builder from './pages/Builder';
 
@@ -33,16 +34,19 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="App">
-        <ClientHeader onLogout={handleLogout} user={user || undefined} />
-        <main className="client-main">
-          <Routes>
-            <Route path="/" element={<Dashboard />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/builder" element={<Builder />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-          </Routes>
-        </main>
+      <div className="App flex h-screen bg-gray-50">
+        <Sidebar onLogout={handleLogout} />
+        <div className="flex-1 flex flex-col md:ml-64">
+          <ClientHeader onLogout={handleLogout} user={user || undefined} />
+          <main className="flex-1 overflow-auto">
+            <Routes>
+              <Route path="/" element={<Dashboard />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+              <Route path="/builder" element={<Builder />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+            </Routes>
+          </main>
+        </div>
       </div>
     </BrowserRouter>
   );
