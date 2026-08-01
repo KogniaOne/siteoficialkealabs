@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, BarChart3, FileText, Users, Zap } from 'lucide-react';
+import { Menu, X, BarChart3, FileText, Users, Zap, TestTube } from 'lucide-react';
 
 interface SidebarProps {
   onLogout?: () => void;
@@ -15,6 +15,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onLogout }) => {
     { label: 'Orçamentos', icon: FileText, path: '/builder' },
     { label: 'Prospect', icon: Users, path: '/prospect' },
     { label: 'Agent Kea', icon: Zap, path: '/agent' },
+    { label: 'Teste', icon: TestTube, path: '/test' },
   ];
 
   const isActive = (path: string) => location.pathname === path;
